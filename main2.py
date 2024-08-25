@@ -38,6 +38,15 @@ def plot_regression_line(x, y, b):
     plt.show()
 
 
+def lossFunction(m, b, points: pd.DataFrame):
+    totatError = 0
+    for i in range(len(points)):
+        x = points.iloc[i].x
+        y = points.iloc[i].y
+        totatError += (y - (m * x + b)) ** 2
+    return totatError / float(len(points))
+
+
 def main():
     # observations / data
     data = pd.read_csv("test.csv")
@@ -54,6 +63,8 @@ def main():
     )
 
     plot_regression_line(x, y, b)
+
+    print(f"loss: {lossFunction(b[1], b[0], data)}")
 
 
 main()
