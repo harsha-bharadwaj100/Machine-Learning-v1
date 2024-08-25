@@ -2,53 +2,53 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import sympy as sp
+import time
 
 # Replace 'your_file.csv' with the path to your CSV file
-df = pd.read_csv("test.csv")
-
-# Display the first few rows of the dataframe
-# print(df.head())
-
-data = df.to_dict()
-
-x1 = df["x"].to_list()[:50]
-
-y1 = list(map(int, df["y"].to_list()[:50]))
-
-print(max(x1), max(y1))
-plt.plot(x1, y1, "o", marker=".", markersize=2)
+data = pd.read_csv("test.csv")
 
 
-def squareLoss(x, y, func):
-    yl = list(map(func, x))
-    result = 0
-    for i, j in zip(y, yl):
-        result += (j - i) ** 2
-    return result
+def lossFunction(m, b, points: pd.DataFrame):
+    totatError = 0
+    for i in range(len(points)):
+        x = points.iloc[i].x
+        y = points.iloc[i].y
+        totatError += (y - (m * x + b)) ** 2
+    return totatError / float(len(points))
 
 
-global m, c
-m, c = 1, 0.1
+def gradientDescent(m_now, b_now, points, L):
+    m_gradient = 0
+    b_gradient = 0
+    n = len(points)
+
+    for i in range(n):
+        x = points.iloc[i].x
+        y = points.iloc[i].y
+
+        m_gradient += -(2 / n) * x * (y - (m_now * x + b_now))
+        b_gradient += -(2 / n) * (y - (m_now * x + b_now))
+
+    m = m_now - m_gradient * L
+    b = b_now - b_gradient * L
+    return m, b
 
 
-def yl(x):
-    global m, c
-    return m * x + c
+m = 0
+b = 0
+L = 0.0001
+epochs = 1000
+start = time.time()
+for i in range(epochs):
+    m, b = gradientDescent(m, b, data, L)
+end = time.time()
 
-
-print(f"Loss: {squareLoss(x1, y1, yl)}")
-
-# a, b, d = sp.symbols('a b d')
-# sp.solve()
-# ans = sp.solve([sp.Eq(a*squareLoss(x1, y1, yl), Y1), sp.Eq(((.173*n)+(.517*n))/165, Y2), 
-#       sp.Eq(Y1+Y2, 1)], [n, Y1, Y2])
-
-x = np.linspace(0, 100, 1000)
-y = x
-
-
-# Create the plot
-plt.plot(x, y)
-# plt.plot()
+print(m, b)
+print(f"Time: {end - start}")
+plt.scatter(data.x, data.y, c="black")
+plt.plot(
+    list(range(int(min(data.x)), int(max(data.y)))),
+    [m * x + b for x in range(int(min(data.x)), int(max(data.y)))],
+    color="red",
+)
 plt.show()
-# print(x)
