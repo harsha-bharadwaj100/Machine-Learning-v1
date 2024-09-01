@@ -8,6 +8,9 @@ pandas = "*"
 matplotlib = "*"
 scipy = "*"
 sympy = "*"
+altair = "*"
+plotly = "*"
+openpyxl = "*"
 
 [dev-packages]
 
