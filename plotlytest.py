@@ -6,7 +6,7 @@ dt = pd.DataFrame(
         "x": [1, 2, 3, 4, 5, 6],
         "y": [10, 11, 12, 13, 34, 65],
         "cont": ["a", "b", "c", "d", "a", "b"],
-        "pop": [3, 7, 8, 9, 2, 3],
+        "pop": [3, 7, 8, 19, 22, 391],
         "country": ["india", "usa", "uk", "australia", "india", "usa"],
     }
 )
@@ -25,7 +25,7 @@ fig = px.scatter(
     color="cont",
     hover_name="country",
     # log_x=True,
-    # size_max=60,
+    size_max=60,
 )
 fig.show()
 # import plotly.graph_objects as go
