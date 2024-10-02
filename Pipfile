@@ -11,6 +11,9 @@ sympy = "*"
 altair = "*"
 plotly = "*"
 openpyxl = "*"
+scikit-learn = "*"
+seaborn = "*"
+graphviz = "*"
 
 [dev-packages]
 

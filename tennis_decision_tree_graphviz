@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label=<outlook &le; 0.5<br/>entropy = 0.946<br/>samples = 11<br/>value = [4, 7]<br/>class = Yes>, fillcolor="#aad5f4"] ;
+1 [label=<entropy = 0.0<br/>samples = 3<br/>value = [0, 3]<br/>class = Yes>, fillcolor="#399de5"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<humidity &le; 0.5<br/>entropy = 1.0<br/>samples = 8<br/>value = [4, 4]<br/>class = No>, fillcolor="#ffffff"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label=<wind &le; 0.5<br/>entropy = 0.811<br/>samples = 4<br/>value = [3, 1]<br/>class = No>, fillcolor="#eeab7b"] ;
+2 -> 3 ;
+4 [label=<entropy = 0.0<br/>samples = 2<br/>value = [2, 0]<br/>class = No>, fillcolor="#e58139"] ;
+3 -> 4 ;
+5 [label=<outlook &le; 1.5<br/>entropy = 1.0<br/>samples = 2<br/>value = [1, 1]<br/>class = No>, fillcolor="#ffffff"] ;
+3 -> 5 ;
+6 [label=<entropy = 0.0<br/>samples = 1<br/>value = [0, 1]<br/>class = Yes>, fillcolor="#399de5"] ;
+5 -> 6 ;
+7 [label=<entropy = 0.0<br/>samples = 1<br/>value = [1, 0]<br/>class = No>, fillcolor="#e58139"] ;
+5 -> 7 ;
+8 [label=<wind &le; 0.5<br/>entropy = 0.811<br/>samples = 4<br/>value = [1, 3]<br/>class = Yes>, fillcolor="#7bbeee"] ;
+2 -> 8 ;
+9 [label=<outlook &le; 1.5<br/>entropy = 1.0<br/>samples = 2<br/>value = [1, 1]<br/>class = No>, fillcolor="#ffffff"] ;
+8 -> 9 ;
+10 [label=<entropy = 0.0<br/>samples = 1<br/>value = [1, 0]<br/>class = No>, fillcolor="#e58139"] ;
+9 -> 10 ;
+11 [label=<entropy = 0.0<br/>samples = 1<br/>value = [0, 1]<br/>class = Yes>, fillcolor="#399de5"] ;
+9 -> 11 ;
+12 [label=<entropy = 0.0<br/>samples = 2<br/>value = [0, 2]<br/>class = Yes>, fillcolor="#399de5"] ;
+8 -> 12 ;
+}
