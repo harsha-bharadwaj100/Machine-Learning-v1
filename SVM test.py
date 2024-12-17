@@ -1,16 +1,16 @@
 # Load the important packages
-from sklearn.datasets import load_breast_cancer
+from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.svm import SVC
 
 # Load the datasets
-cancer = load_breast_cancer()
+cancer = load_iris()
 X = cancer.data[:, :2]
 y = cancer.target
 
 # Build the model
-svm = SVC(kernel="rbf", gamma=2, C=2)
+svm = SVC(kernel="linear", C=2)
 # Trained the model
 svm.fit(X, y)
 
@@ -19,7 +19,7 @@ DecisionBoundaryDisplay.from_estimator(
     svm,
     X,
     response_method="predict",
-    cmap=plt.cm.Spectral,
+    # cmap=plt.cm.Spectral,
     alpha=0.8,
     xlabel=cancer.feature_names[0],
     ylabel=cancer.feature_names[1],
