@@ -63,12 +63,16 @@ def create_transition_matrix(
 
 def print_transition_matrix(P, max_display=20):
     """
+    Saves the whole transition matrix to a csv file and
     Print a readable subset of the transition matrix
 
     Parameters:
     P (numpy.ndarray): Transition matrix
     max_display (int): Maximum number of rows/columns to display
     """
+    # Save the transition matrix to a csv file
+    np.savetxt("transition_matrix.csv", P, delimiter=",")
+    print("Transition matrix saved to 'transition_matrix.csv'")
     # Create labels for rows and columns
     labels = [str(i) for i in range(P.shape[0])]
 
@@ -455,30 +459,9 @@ def compare_game_variants(variants, n_steps=50):
 
 
 # Standard game configuration
-standard_snakes = {
-    16: 6,
-    47: 26,
-    49: 11,
-    56: 53,
-    62: 19,
-    64: 60,
-    87: 24,
-    93: 73,
-    95: 75,
-    98: 78,
-}
+standard_snakes = {51: 11, 56: 15, 62: 57, 92: 53, 98: 8}
 
-standard_ladders = {
-    1: 38,
-    4: 14,
-    9: 31,
-    21: 42,
-    28: 84,
-    36: 44,
-    51: 67,
-    71: 91,
-    80: 100,
-}
+standard_ladders = {2: 38, 4: 14, 9: 31, 33: 85, 52: 88, 80: 99}
 
 # Example usage
 if __name__ == "__main__":
@@ -488,7 +471,7 @@ if __name__ == "__main__":
         snakes=standard_snakes,
         ladders=standard_ladders,
         exact_roll_to_finish=False,
-        n_steps=50,
+        n_steps=100,
     )
 
     print("\n--- EXACT ROLL TO FINISH ANALYSIS ---")
@@ -496,7 +479,7 @@ if __name__ == "__main__":
         snakes=standard_snakes,
         ladders=standard_ladders,
         exact_roll_to_finish=True,
-        n_steps=50,
+        n_steps=100,
     )
 
     # Compare the two variants
